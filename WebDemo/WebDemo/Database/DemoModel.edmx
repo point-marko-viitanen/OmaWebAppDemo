@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JalkahoitolaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bandages">
+          <Key>
+            <PropertyRef Name="ItemSubGroubID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="int" />
+          <Property Name="ProductName (FK)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Prices" Type="money" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="Exp Date " Type="datetime" />
+          <Property Name="ItemSubGroubID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Creams">
+          <Key>
+            <PropertyRef Name="ItemSubGroubID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="int" />
+          <Property Name="ProductName (FK)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Prices" Type="money" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="Exp Date " Type="datetime" />
+          <Property Name="ItemSubGroubID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gloves">
+          <Key>
+            <PropertyRef Name="ItemSubGroubID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="int" />
+          <Property Name="ProductName (FK)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Prices" Type="money" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="Exp Date " Type="datetime" />
+          <Property Name="ItemSubGroubID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemGroupName">
+          <Key>
+            <PropertyRef Name="ItemGroupID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemGroupName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Bandages_Bandages">
+          <End Role="ItemGroupName" Type="Self.ItemGroupName" Multiplicity="0..1" />
+          <End Role="Bandages" Type="Self.Bandages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroupName">
+              <PropertyRef Name="ItemGroupID" />
+            </Principal>
+            <Dependent Role="Bandages">
+              <PropertyRef Name="ItemGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Creams_Creams">
+          <End Role="ItemGroupName" Type="Self.ItemGroupName" Multiplicity="0..1" />
+          <End Role="Creams" Type="Self.Creams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroupName">
+              <PropertyRef Name="ItemGroupID" />
+            </Principal>
+            <Dependent Role="Creams">
+              <PropertyRef Name="ItemGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gloves_Gloves">
+          <End Role="ItemGroupName" Type="Self.ItemGroupName" Multiplicity="0..1" />
+          <End Role="Gloves" Type="Self.Gloves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroupName">
+              <PropertyRef Name="ItemGroupID" />
+            </Principal>
+            <Dependent Role="Gloves">
+              <PropertyRef Name="ItemGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JalkahoitolaModelStoreContainer">
+          <EntitySet Name="Bandages" EntityType="Self.Bandages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Creams" EntityType="Self.Creams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gloves" EntityType="Self.Gloves" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemGroupName" EntityType="Self.ItemGroupName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bandages_Bandages" Association="Self.FK_Bandages_Bandages">
+            <End Role="ItemGroupName" EntitySet="ItemGroupName" />
+            <End Role="Bandages" EntitySet="Bandages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Creams_Creams" Association="Self.FK_Creams_Creams">
+            <End Role="ItemGroupName" EntitySet="ItemGroupName" />
+            <End Role="Creams" EntitySet="Creams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gloves_Gloves" Association="Self.FK_Gloves_Gloves">
+            <End Role="ItemGroupName" EntitySet="ItemGroupName" />
+            <End Role="Gloves" EntitySet="Gloves" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JalkahoitolaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bandage">
+          <Key>
+            <PropertyRef Name="ItemSubGroubID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="Int32" />
+          <Property Name="ProductName__FK_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Prices" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="Exp_Date_" Type="DateTime" Precision="3" />
+          <Property Name="ItemSubGroubID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ItemGroupName" Relationship="Self.FK_Bandages_Bandages" FromRole="Bandages" ToRole="ItemGroupName" />
+        </EntityType>
+        <EntityType Name="Cream">
+          <Key>
+            <PropertyRef Name="ItemSubGroubID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="Int32" />
+          <Property Name="ProductName__FK_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Prices" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="Exp_Date_" Type="DateTime" Precision="3" />
+          <Property Name="ItemSubGroubID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ItemGroupName" Relationship="Self.FK_Creams_Creams" FromRole="Creams" ToRole="ItemGroupName" />
+        </EntityType>
+        <EntityType Name="Glove">
+          <Key>
+            <PropertyRef Name="ItemSubGroubID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="Int32" />
+          <Property Name="ProductName__FK_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Prices" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="Exp_Date_" Type="DateTime" Precision="3" />
+          <Property Name="ItemSubGroubID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ItemGroupName" Relationship="Self.FK_Gloves_Gloves" FromRole="Gloves" ToRole="ItemGroupName" />
+        </EntityType>
+        <EntityType Name="ItemGroupName">
+          <Key>
+            <PropertyRef Name="ItemGroupID" />
+          </Key>
+          <Property Name="ItemGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemGroupName1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Bandages" Relationship="Self.FK_Bandages_Bandages" FromRole="ItemGroupName" ToRole="Bandages" />
+          <NavigationProperty Name="Creams" Relationship="Self.FK_Creams_Creams" FromRole="ItemGroupName" ToRole="Creams" />
+          <NavigationProperty Name="Gloves" Relationship="Self.FK_Gloves_Gloves" FromRole="ItemGroupName" ToRole="Gloves" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Bandages_Bandages">
+          <End Role="ItemGroupName" Type="Self.ItemGroupName" Multiplicity="0..1" />
+          <End Role="Bandages" Type="Self.Bandage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroupName">
+              <PropertyRef Name="ItemGroupID" />
+            </Principal>
+            <Dependent Role="Bandages">
+              <PropertyRef Name="ItemGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Creams_Creams">
+          <End Role="ItemGroupName" Type="Self.ItemGroupName" Multiplicity="0..1" />
+          <End Role="Creams" Type="Self.Cream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroupName">
+              <PropertyRef Name="ItemGroupID" />
+            </Principal>
+            <Dependent Role="Creams">
+              <PropertyRef Name="ItemGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gloves_Gloves">
+          <End Role="ItemGroupName" Type="Self.ItemGroupName" Multiplicity="0..1" />
+          <End Role="Gloves" Type="Self.Glove" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroupName">
+              <PropertyRef Name="ItemGroupID" />
+            </Principal>
+            <Dependent Role="Gloves">
+              <PropertyRef Name="ItemGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JalkahoitolaDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bandages" EntityType="Self.Bandage" />
+          <EntitySet Name="Creams" EntityType="Self.Cream" />
+          <EntitySet Name="Gloves" EntityType="Self.Glove" />
+          <EntitySet Name="ItemGroupNames" EntityType="Self.ItemGroupName" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Bandages_Bandages" Association="Self.FK_Bandages_Bandages">
+            <End Role="ItemGroupName" EntitySet="ItemGroupNames" />
+            <End Role="Bandages" EntitySet="Bandages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Creams_Creams" Association="Self.FK_Creams_Creams">
+            <End Role="ItemGroupName" EntitySet="ItemGroupNames" />
+            <End Role="Creams" EntitySet="Creams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gloves_Gloves" Association="Self.FK_Gloves_Gloves">
+            <End Role="ItemGroupName" EntitySet="ItemGroupNames" />
+            <End Role="Gloves" EntitySet="Gloves" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JalkahoitolaModelStoreContainer" CdmEntityContainer="JalkahoitolaDemoEntities">
+          <EntitySetMapping Name="Bandages">
+            <EntityTypeMapping TypeName="JalkahoitolaModel.Bandage">
+              <MappingFragment StoreEntitySet="Bandages">
+                <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+                <ScalarProperty Name="ProductName__FK_" ColumnName="ProductName (FK)" />
+                <ScalarProperty Name="Prices" ColumnName="Prices" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Exp_Date_" ColumnName="Exp Date " />
+                <ScalarProperty Name="ItemSubGroubID" ColumnName="ItemSubGroubID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Creams">
+            <EntityTypeMapping TypeName="JalkahoitolaModel.Cream">
+              <MappingFragment StoreEntitySet="Creams">
+                <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+                <ScalarProperty Name="ProductName__FK_" ColumnName="ProductName (FK)" />
+                <ScalarProperty Name="Prices" ColumnName="Prices" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Exp_Date_" ColumnName="Exp Date " />
+                <ScalarProperty Name="ItemSubGroubID" ColumnName="ItemSubGroubID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gloves">
+            <EntityTypeMapping TypeName="JalkahoitolaModel.Glove">
+              <MappingFragment StoreEntitySet="Gloves">
+                <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+                <ScalarProperty Name="ProductName__FK_" ColumnName="ProductName (FK)" />
+                <ScalarProperty Name="Prices" ColumnName="Prices" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Exp_Date_" ColumnName="Exp Date " />
+                <ScalarProperty Name="ItemSubGroubID" ColumnName="ItemSubGroubID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemGroupNames">
+            <EntityTypeMapping TypeName="JalkahoitolaModel.ItemGroupName">
+              <MappingFragment StoreEntitySet="ItemGroupName">
+                <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+                <ScalarProperty Name="ItemGroupName1" ColumnName="ItemGroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="JalkahoitolaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
